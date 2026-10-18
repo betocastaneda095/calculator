@@ -20,14 +20,17 @@ body {
 
 }
 
-.output {
+ #display {
     box-sizing:border-box;
     flex-basis:auto;
     height: 2rem;
     border-style:solid;
     border-radius:10px;
     margin: 8px;
-    border-color:blueviolet
+    border-color:blueviolet;
+    background-color:rgb(19, 18, 18);
+    color:aliceblue;
+
 }
 
 .keyboard {
