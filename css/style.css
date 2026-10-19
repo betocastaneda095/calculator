@@ -6,7 +6,7 @@ body {
 
 .container {
     color:white;
-    height:350px;
+    height:380px;
     flex-basis:250px;
     flex-shrink:1;
     background-color:rgb(19, 18, 18);
@@ -16,8 +16,11 @@ body {
 }
 
 .header {
-    text-align: center;
+    text-align: center; 
+}
 
+.header h2{
+    margin:16px;
 }
 
  #display {
@@ -26,7 +29,6 @@ body {
     height: 2rem;
     border-style:solid;
     border-radius:10px;
-    margin: 8px;
     border-color:blueviolet;
     background-color:rgb(19, 18, 18);
     color:aliceblue;
@@ -37,8 +39,8 @@ body {
     display:flex;
     background-color:rgb(36, 36, 36);
     margin:0px;
-    flex-basis:200px;
-    height: 200px;
+    flex-basis:250px;
+    height: 500px;
 }
 
 .keycaps { 
@@ -47,6 +49,25 @@ body {
     flex-basis:250px;
     
 }
+
+.delete {
+    display:flex;
+    margin:0;
+    padding:2px;
+}
+
+
+#ac {
+    flex:1;
+    width:120px;
+    height:50px;
+}
+
+#del {
+    flex:1;
+    height:50px;
+}
+
 .numbers {
     display:flex;
 
@@ -64,7 +85,6 @@ body {
 .operators{
     display:flex;
     justify-content:center;
-
 
 }
 
@@ -100,13 +120,18 @@ button.number{
 }
 
 button.operator{
+    
     box-sizing:border-box;
     width:60px;
-    height:35px;
+    height:45px;
     border-radius:5px;
     background-color:rgb(19, 19, 19);
     color:blueviolet;
-    font-size:20px;
+    font-size:16px;
+}
+
+button.operator#equal{
+    height:55px;
 }
 
 button.number-last {
@@ -122,3 +147,4 @@ button.number-point {
     height:40px;
     border-radius:5px
 }
+

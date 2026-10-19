@@ -52,57 +52,45 @@ const operations = {
 };
 
 
+
 // Operative section 
 
-const input = document.querySelector("#display");
-const buttonsContainer = document.querySelector(".keyboard");
+btns = document.querySelectorAll('button');
+btns.forEach((btn) =>{
+  btn.addEventListener('click', (event) => {
+    const target = event.target;
+    console.log(target.classList);
 
-let firstNumber = null;
-let selectedOperator = null;
+    switch(true){
 
-buttonsContainer.addEventListener("click", function (event) {
-  const clickedElement = event.target;
+      case target.classList.contains('number'): 
+      let firstNumber = parseInt(target.textContent);
+      console.log(firstNumber);
+      break;
+      
+      case target.classList.contains('operator'):
+        switch(true){
+          case target.id == 'minus': 
+          console.log(target.id);
+            // sustract(firstNumber,secondNumber);
+          break;  
 
-  if (clickedElement.tagName !== "BUTTON") {
-    return;
-  }
+          case target.id == 'mult': 
+          console.log(target.id);
+            // multiply(firstNumber,secondNumber);
+          break;
 
-  let clickedValue = clickedElement.getAttribute("data-value");
-
-  if (clickedValue === null) {
-    clickedValue = clickedElement.textContent.trim();
-  }
-
-  if (!clickedElement.classList.contains("operator")) {
-    input.value += clickedValue;
-    return;
-  }
-
-  if (clickedValue === "=") {
-    if (firstNumber === null || input.value === "") {
-      return;
+          case target.id == 'plus': 
+          console.log(target.id);
+            // add(firstNumber,secondNumber);
+          break;  
+          
+          case target.id == 'division': 
+          console.log(target.id);
+            // divide(firstNumber,secondNumber);
+          break;            
+        }
+      break;
     }
-
-    const secondNumber = Number(input.value);
-    const operationFunction = operations[selectedOperator];
-
-    if (operationFunction === undefined) {
-      return;
-    }
-
-    const calculationResult = operationFunction(firstNumber, secondNumber);
-    input.value = calculationResult;
-
-    firstNumber = null;
-    selectedOperator = null;
-    return;
-  }
-
-  if (input.value === "" || operations[clickedValue] === undefined) {
-    return;
-  }
-
-  firstNumber = Number(input.value);
-  selectedOperator = clickedValue;
-  input.value = "";
-});
+  });
+})
