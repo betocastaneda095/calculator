@@ -56,41 +56,75 @@ const operations = {
 // Operative section 
 
 btns = document.querySelectorAll('button');
-btns.forEach((btn) =>{
-  btn.addEventListener('click', (event) => {
-    const target = event.target;
-    console.log(target.classList);
+display = document.querySelector('#display');
+equal = document.querySelector('#equal');
 
-    switch(true){
+const tokens = [];  //This will catch the numbers. 
 
-      case target.classList.contains('number'): 
-      let firstNumber = parseInt(target.textContent);
-      console.log(firstNumber);
-      break;
-      
-      case target.classList.contains('operator'):
-        switch(true){
-          case target.id == 'minus': 
-          console.log(target.id);
-            // sustract(firstNumber,secondNumber);
-          break;  
 
-          case target.id == 'mult': 
-          console.log(target.id);
-            // multiply(firstNumber,secondNumber);
-          break;
+//push the elements into the array. 
 
-          case target.id == 'plus': 
-          console.log(target.id);
-            // add(firstNumber,secondNumber);
-          break;  
-          
-          case target.id == 'division': 
-          console.log(target.id);
-            // divide(firstNumber,secondNumber);
-          break;            
-        }
-      break;
+btns.forEach((btn) => {   
+  btn.addEventListener('click',(event)=>{
+    event.preventDefault();
+    if(event.target.textContent !== '='){
+    tokens.push(event.target.textContent);
+      console.log(tokens);
+      display.value = tokens.join('');
     }
   });
-})
+});
+
+
+
+
+//add reductedArray to be triggered by '=' 
+
+
+
+equal.addEventListener('click',(event)=>{
+  event.preventDefault();
+
+
+
+const reductedArray = tokens.reduce((accumulator,currentValue) => {
+  const lastItem = accumulator[accumulator.length - 1];
+
+  if(!isNaN(currentValue) && !isNaN(lastItem)){
+      accumulator[accumulator.length - 1] = lastItem + currentValue;
+  }else{
+      accumulator.push(currentValue);
+  }
+  return accumulator
+},[]);
+
+console.log(reductedArray);
+display.value = String(reductedArray);
+//Make here the Next step ***** I got the reduced array
+let operator;
+
+const calculatedArray = reductedArray.slice(1).reduce((accumulator,currentValue)=>{
+
+  if(isNaN(currentValue)){
+    operator = currentValue;
+    
+  }
+  else{
+  
+  accumulator = operations[operator](Number(accumulator),Number(currentValue));
+  }
+ return accumulator;
+},Number(reductedArray[0]));
+
+  console.log(reductedArray);
+
+  console.log(operator);
+
+  console.log(calculatedArray);
+  display.value = String(calculatedArray);
+
+  
+
+
+});
+
